@@ -1,0 +1,74 @@
+{
+    "variables": {
+        "applicaiton_name": "softobiz",
+        "application_version": "1.0.0",
+        "region": "us-east-1",
+        "instance_type": "t2.micro",
+        "source_ami": "ami-0a8b4cd432b1c3063",
+        "ami_shared_accounts": "156779398815"
+
+    },
+    "builders": [
+        {
+            "name": "{{user `applicaiton_name`}}",
+            "type": "amazon-ebs",
+            "profile": "devops",
+            "ssh_username": "ubuntu",
+            "force_deregister": "true",
+            "force_delete_snapshot": "true",
+            "associate_public_ip_address": "true",
+            "region": "{{user  `region`}}",
+            "source_ami": "{{user `source_ami`}}",
+            "instance_type":  "{{user `instance_type`}}",
+            "ami_name": "{{user `applicaiton_name`}}-{{user `application_version`}}",
+            "ami_users": "{{user `ami_shared_accounts`}}",
+            "tags": {
+                "Name": "{{user `applicaiton_name`}}",
+                "createdBy": "Packer"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo yum install epel-release -y"
+            ]
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo yum install unzip wget curl git -y"
+            ]
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo yum install ansible -y"
+            ]
+        },
+        {
+            "type": "shell",
+            "script": "/Users/ck/repos/softobiz-project1/scripts/httpd.sh"
+
+        },
+        {
+            "type": "ansible-local",
+            "playbook_file": "/Users/ck/repos/softobiz-project1/yaml/web.yml",
+            "extra_arguments": [
+                "-vvvv"
+            ]
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "cd /opt/",
+                "git clone https://github.com/keshavkummari/keshavkummari.git",
+                "cd /opt/keshavkummari/",
+                "cp -pvr /opt/keshavkummari/ /var/www/html/"
+
+            ]
+        }
+
+    ]
+}
