@@ -5,14 +5,13 @@
         "region": "us-east-1",
         "instance_type": "t2.micro",
         "source_ami": "ami-0a8b4cd432b1c3063",
+        "iam_profile": "automation",
         "ami_shared_accounts": "631258978605"
 
     },
     "builders": [
         {
             "name": "{{user `applicaiton_name`}}",
-            "access_key": "AKIAZF6PXTEWTPSDL4Q2",
-            "secret_key": "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",
             "type": "amazon-ebs",
             "ssh_username": "ec2-user",
             "force_deregister": "true",
