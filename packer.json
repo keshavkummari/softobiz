@@ -5,7 +5,7 @@
         "region": "us-east-1",
         "instance_type": "t2.micro",
         "source_ami": "ami-0a8b4cd432b1c3063",
-        "ami_shared_accounts": "156779398815"
+        "ami_shared_accounts": "631258978605"
 
     },
     "builders": [
@@ -18,7 +18,7 @@
             "associate_public_ip_address": "true",
             "region": "{{user `region`}}",
             "source_ami": "{{user `source_ami`}}",
-            "instance_type":  "{{user `instance_type`}}",
+            "instance_type": "{{user `instance_type`}}",
             "ami_name": "{{user `applicaiton_name`}}-{{user `application_version`}}",
             "ami_users": "{{user `ami_shared_accounts`}}",
             "tags": {
