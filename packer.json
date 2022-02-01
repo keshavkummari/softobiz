@@ -12,7 +12,6 @@
         {
             "name": "{{user `applicaiton_name`}}",
             "type": "amazon-ebs",
-            "profile": "devops",
             "ssh_username": "ec2-user",
             "force_deregister": "true",
             "force_delete_snapshot": "true",
