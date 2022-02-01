@@ -6,7 +6,7 @@
         "instance_type": "t2.micro",
         "source_ami": "ami-0a8b4cd432b1c3063",
         "iam_profile": "automation",
-        "ami_shared_accounts": "631258978605"
+        "ami_shared_accounts": "156779398815"
 
     },
     "builders": [
