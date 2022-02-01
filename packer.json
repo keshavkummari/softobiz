@@ -32,7 +32,7 @@
         {
             "type": "shell",
             "inline": [
-                "sudo yum install epel-release -y"
+                "sudo amazon-linux-extras install epel"
             ]
         },
         {
